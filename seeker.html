@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analyzer - JOB SEEKER</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/static/resume4.jpg') no-repeat center center;
+            background-size: cover;
+
+        }
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          padding: 1rem 2rem;
+          background-color: #767978ff; /* Teal background */
+          font-weight: bold;
+          font-size: 1rem;
+          box-shadow: 0 2px 5px rgba(94, 94, 94, 0.1);
+        }
+        .nav-right a {
+          text-decoration: none;
+          color: #ffffff; /* White text */
+          transition: color 0.3s ease;
+        }
+
+        .nav-left a:hover,
+        .nav-right a:hover {
+          color: #006d65; /* Light teal on hover */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95); /* Slightly increase opacity for better readability */
+            padding: 40px 30px;
+            border-radius: 12px; /* Make the corners more rounded */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add a stronger shadow for better contrast */
+            max-width: 600px; /* Increase width for better spacing */
+            margin: 80px auto; /* Add more vertical spacing */
+        }
+        h2 {
+            text-align: center; /* Center the heading */
+            font-size: 1.8em; /* Adjust font size */
+            color: #333; /* Darker text for better readability */
+        }
+        label {
+            font-size: 1em; /* Adjust label font size */
+            color: #555; /* Slightly darker text */
+        }
+        input[type="file"], textarea {
+            width: 100%;
+            border: 1px solid #ccc; /* Add border for better visibility */
+            border-radius: 4px; /* Rounded corners */
+            padding: 8px; /* Add padding */
+            margin-top: 5px; /* Add spacing */
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px 30px; /* Adjust button size */
+            background: #00796b; /* Use a teal color for the button */
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background: #005f56; /* Darker teal on hover */
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+    <nav class="navbar">
+      <div class="nav-left"><a href="/" aria-label="Go to Home">Home</a></div>
+    </nav>
+   </header>
+    <div class="container">
+        <h2>Compare Resume</h2>
+        <form action="{{ url_for('seeker') }}" method="post" enctype="multipart/form-data">
+            <label for="resume_file">Upload Your Resume (PDF):</label>
+            <input type="file" name="resume_file" id="resume_file" accept=".pdf" required>
+
+            <label for="ideal_file">Upload Ideal Resume (PDF):</label>
+            <input type="file" name="ideal_file" id="ideal_file" accept=".pdf">
+
+            <label for="jd_text">Or Paste Job Description:</label>
+            <textarea name="jd_text" id="jd_text" rows="4"></textarea>
+
+            <button type="submit">Compare</button>
+        </form>
+
+        {% if result %}
+            <hr>
+            <h3>Comparison Result</h3>
+            <div>{{ result|safe }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>

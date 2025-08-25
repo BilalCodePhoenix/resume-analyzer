@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESUME ANALYZER</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+          height: 100%;
+          background: #fdfdfd;
+          overflow-x: hidden;
+        }
+
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          padding: 1rem 2rem;
+          background-color: #767978ff; /* Teal background */
+          font-weight: bold;
+          font-size: 1rem;
+          box-shadow: 0 2px 5px rgba(94, 94, 94, 0.1);
+        }
+
+        .nav-left a,
+        .nav-right a {
+          text-decoration: none;
+          color: #ffffff; /* White text */
+          transition: color 0.3s ease;
+        }
+
+        .nav-left a:hover,
+        .nav-right a:hover {
+          color: #b2dfdb; /* Light teal on hover */
+        }
+
+        .main-content {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          padding: 2rem;
+          background: url('/static/resume5.jpg') no-repeat center center;
+          background-size: cover;
+          height: calc(100vh - 4rem);
+        }
+
+        .main-content::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 50%;
+          background: #fbe3cc; /* Peach background */
+          border-top-left-radius: 50% 20%;
+          border-top-right-radius: 50% 20%;
+          z-index: -1;
+        }
+
+        .main-content h1 {
+          font-size: 6.5rem;
+          color: #060706ff;
+          margin-bottom: 1rem;
+        }
+
+        .main-content p {
+          font-size: 1.1rem;
+          color: #2c3639;
+          margin-bottom: 2rem;
+        }
+
+        .login-btn {
+          display: inline-block;
+          background-color: #00796b;
+          color: white;
+          text-decoration: none;
+          padding: 0.8rem 2rem;
+          border-radius: 6px;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+          background-color: #006d65;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+          .navbar {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .main-content {
+            padding: 3rem 1rem;
+          }
+
+          .main-content h1 {
+            font-size: 2rem;
+          }
+
+          .main-content p {
+            font-size: 1rem;
+          }
+
+          .login-btn {
+            font-size: 0.9rem;
+            padding: 0.6rem 1.5rem;
+          }
+        }
+    </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="nav-left"><a href="/" aria-label="Go to Home">Home</a></div>
+      <div class="nav-right"><a href="{{ url_for('seeker') }}" aria-label="Log in to Resume Analyzer">Login</a></div>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <h1>Resume Analyzer</h1>
+    <p>"Optimize. Compare &  Get hired."</p>
+    <a href="{{ url_for('seeker') }}" class="login-btn" aria-label="Log in to start analyzing your resume">One click to stand out</a>
+  </main>
+</body>
+</html>
